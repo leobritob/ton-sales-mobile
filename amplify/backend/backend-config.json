@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "tonsalesmobilef0350576": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

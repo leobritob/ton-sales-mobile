@@ -9,5 +9,24 @@ export const useAuth = () => {
     }
   }
 
-  return { signIn }
+  const signUp = async (data: any) => {
+    try {
+      const user = await AuthService.signUp({
+        username: data.email,
+        password: data.password,
+        attributes: {
+          email: data.email,
+          name: `${data.firstName} ${data.lastName}`,
+        },
+      })
+
+      console.log(user)
+
+      return user
+    } catch (error) {
+      console.log('SignIn Error: ', error)
+    }
+  }
+
+  return { signIn, signUp }
 }

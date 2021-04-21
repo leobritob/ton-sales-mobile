@@ -8,6 +8,7 @@ import * as yup from 'yup'
 
 import { Button, Column, ErrorText, Input, Text, Title, TonLogoSvg } from '../../components'
 import { RootStackParamList } from '../../navigations'
+import { useAuth } from '../../hooks'
 
 const schema = yup.object().shape({
   firstName: yup.string().max(255, 'O máximo de caracteres foi atingido').required('Preencha seu nome'),
@@ -35,9 +36,10 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
+  const { signUp } = useAuth()
 
   const handleRegisterButton = useCallback((value) => {
-    console.log({ value })
+    signUp(value)
   }, [])
 
   const handleLoginButton = useCallback(() => {
