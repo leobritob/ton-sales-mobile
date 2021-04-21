@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Alert } from 'react-native'
+import { Alert, StatusBar } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 import { useForm, Controller } from 'react-hook-form'
@@ -57,6 +57,8 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <StatusBar barStyle="light-content" />
+
       <Column height="100%" backgroundColor="#fff" justifyContent="flex-start">
         <Column width="100%" backgroundColor={theme.colors.primary} height="200px">
           <TonLogoSvg width={120} color="#fff" />
