@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import * as yup from 'yup'
 
-import { Button, Column, ErrorText, Input, Text, Title, TonLogoSvg } from '../../components'
+import { Button, Column, ErrorText, Input, Loading, Text, Title, TonLogoSvg } from '../../components'
 import { RootStackParamList } from '../../navigations'
 import { useAuth } from '../../hooks'
 
@@ -36,10 +36,16 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
-  const { signUp } = useAuth()
+  const { isLoading, signUp } = useAuth()
 
-  const handleRegisterButton = useCallback((value) => {
-    signUp(value)
+  const handleRegisterButton = useCallback(async (value) => {
+    const user = await signUp(value)
+    if (user) {
+      navigation.reset({
+        index: 1,
+        routes: [{ name: 'VerifySignUp', params: { email: value.email } }],
+      })
+    }
   }, [])
 
   const handleLoginButton = useCallback(() => {
@@ -104,9 +110,13 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
           {errors?.password && <ErrorText>{errors.password.message}</ErrorText>}
 
           <Button width="100%" onPress={handleSubmit(handleRegisterButton)}>
-            <Text width="100%" textAlign="center" fontSize="16px" fontWeight="bold" color="#fff">
-              Criar conta
-            </Text>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <Text width="100%" textAlign="center" fontSize="16px" fontWeight="bold" color="#fff">
+                Criar conta
+              </Text>
+            )}
           </Button>
 
           <Text mb="10px">ou</Text>
