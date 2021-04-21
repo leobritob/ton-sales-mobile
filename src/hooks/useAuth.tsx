@@ -21,6 +21,7 @@ export const useAuth = () => {
 
       switch (error.code) {
         case 'UserNotFoundException':
+        case 'NotAuthorizedException':
           throw new Error('E-mail e/ou senha estão incorretos')
         case 'UserNotConfirmedException':
           navigation.push('VerifySignUp', { email })
