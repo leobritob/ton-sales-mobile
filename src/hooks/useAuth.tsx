@@ -1,4 +1,4 @@
-import { AuthService } from 'services'
+import { AuthService } from '../services'
 
 export const useAuth = () => {
   const signIn = async (email: string, password: string) => {

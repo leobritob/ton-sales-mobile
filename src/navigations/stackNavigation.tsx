@@ -2,9 +2,15 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { SigInScreen, HomeScreen, SigUpScreen } from 'screens'
+import { SigInScreen, HomeScreen, SigUpScreen } from '../screens'
 
 const Stack = createStackNavigator()
+
+export type RootStackParamList = {
+  SignIn: undefined
+  SignUp: undefined
+  Home: undefined
+}
 
 export const StackNavigation = () => {
   return (

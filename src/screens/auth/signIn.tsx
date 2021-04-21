@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 
-import { Button, Column, Input, Text, Title, TonLogoSvg } from 'components'
-import { useAuth } from 'hooks'
-import { RootStackParamList } from 'App'
+import { Button, Column, Input, Text, Title, TonLogoSvg } from '../../components'
+import { useAuth } from '../../hooks'
+import { RootStackParamList } from '../../navigations'
 
 export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList, 'SignIn'>) => {
   const theme = useTheme()
