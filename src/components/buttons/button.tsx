@@ -1,23 +1,19 @@
 import styled from 'styled-components/native'
 import {
   space,
-  layout,
-  background,
-  flex,
-  LayoutProps,
-  BackgroundProps,
   SpaceProps,
+  layout,
+  LayoutProps,
+  color,
+  ColorProps,
+  flex,
   FlexProps,
   border,
   BorderProps,
   variant,
 } from 'styled-system'
 
-export type ButtonProps = LayoutProps &
-  BackgroundProps &
-  SpaceProps &
-  FlexProps &
-  BorderProps & { onPress?: () => void }
+export type ButtonProps = LayoutProps & ColorProps & SpaceProps & FlexProps & BorderProps & { onPress?: () => void }
 
 export const Button = styled.TouchableOpacity<ButtonProps>`
   min-height: 40px;
@@ -44,7 +40,7 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
   })}
   ${space}
   ${layout}
-  ${background}
+  ${color}
   ${border}
   ${flex}
 `
