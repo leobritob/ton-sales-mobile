@@ -17,7 +17,7 @@ export type InputProps = LayoutProps & SpaceProps & FlexProps & BackgroundProps 
 export const Input = styled.TextInput<InputProps>`
   width: 100%;
   padding: 10px;
-  border: 1px solid #000;
+  border: 1px solid #ccc;
   color: #000;
   border-radius: ${({ theme }) => theme.radii.borderRadius}px;
   ${layout}

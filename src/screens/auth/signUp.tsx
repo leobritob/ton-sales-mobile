@@ -52,7 +52,7 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
         </Column>
 
         <Column width="100%" background="#fff" p="20px">
-          <Title py="20px">Crie sua conta</Title>
+          <Title mb="10px">Crie sua conta</Title>
 
           <Controller
             name="firstName"
@@ -101,23 +101,17 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
           />
           {errors?.password && <ErrorText>{errors.password.message}</ErrorText>}
 
-          <Button
-            width="100%"
-            p="10px 20px"
-            mb="10px"
-            background={theme.colors.primary}
-            onPress={handleSubmit(handleRegisterButton)}
-          >
-            <Text width="100%" textAlign="center" fontSize="18px" fontWeight="bold" color="#fff">
-              Cadastrar
+          <Button width="100%" onPress={handleSubmit(handleRegisterButton)}>
+            <Text width="100%" textAlign="center" fontSize="16px" fontWeight="bold" color="#fff">
+              Criar conta
             </Text>
           </Button>
 
           <Text mb="10px">ou</Text>
 
-          <Button width="100%" p="10px 20px" mb="10px" onPress={handleLoginButton}>
-            <Text width="100%" textAlign="center" fontSize="14px" color="#000">
-              Faça seu login
+          <Button variant="gray" width="100%" onPress={handleLoginButton}>
+            <Text width="100%" textAlign="center" fontSize="14px" color="#ccc">
+              Acesse sua conta
             </Text>
           </Button>
         </Column>

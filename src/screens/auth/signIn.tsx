@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 
-import { Button, Column, Input, Text, Title, TonLogoSvg } from '../../components'
+import { Button, Column, Input, Row, Text, Title, TonLogoSvg } from '../../components'
 import { useAuth } from '../../hooks'
 import { RootStackParamList } from '../../navigations'
 
@@ -30,7 +30,7 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
       </Column>
 
       <Column width="100%" background="#fff" p="20px">
-        <Title py="20px">Acesse sua conta</Title>
+        <Title mb="10px">Acesse sua conta</Title>
         <Input
           keyboardType="email-address"
           autoCompleteType="email"
@@ -46,19 +46,23 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
           mb="10px"
           onChangeText={setPassword}
         />
-        <Text mb="10px">Esqueceu sua senha?</Text>
+        <Row width="100%" justifyContent="flex-end" alignItems="flex-end" mb="20px">
+          <Button variant="transparent" p="5px">
+            <Text>Esqueceu sua senha?</Text>
+          </Button>
+        </Row>
 
-        <Button width="100%" p="10px 20px" mb="10px" background={theme.colors.primary} onPress={handleLoginButton}>
-          <Text width="100%" textAlign="center" fontSize="18px" fontWeight="bold" color="#fff">
-            Conectar
+        <Button width="100%" onPress={handleLoginButton}>
+          <Text width="100%" textAlign="center" fontSize="16px" color="#fff">
+            Acessar conta
           </Text>
         </Button>
 
         <Text mb="10px">ou</Text>
 
-        <Button width="100%" p="10px 20px" mb="10px" background={theme.colors.primary} onPress={handleSignUpButton}>
-          <Text width="100%" textAlign="center" fontSize="18px" fontWeight="bold" color="#fff">
-            Cadastre-se
+        <Button variant="gray" width="100%" onPress={handleSignUpButton}>
+          <Text width="100%" textAlign="center" fontSize="14px" color="#ccc">
+            Criar sua conta
           </Text>
         </Button>
       </Column>
