@@ -9,6 +9,7 @@ export const theme = {
   breakpoints,
   colors: {
     primary: '#00c700',
+    danger: '#900',
   },
   radii: {
     borderRadius: 5,
