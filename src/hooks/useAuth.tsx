@@ -1,16 +1,28 @@
+import { StackNavigationProp } from '@react-navigation/stack'
 import { useState } from 'react'
+import { RootStackParamList } from '../navigations'
+
 import { AuthService } from '../services'
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (
+    email: string,
+    password: string,
+    navigation: StackNavigationProp<RootStackParamList, 'SignIn'>
+  ) => {
     try {
       setIsLoading(true)
 
       return await AuthService.signIn(email, password)
     } catch (error) {
       console.log('signIn error: ', error)
+
+      switch (error.code) {
+        case 'UserNotConfirmedException':
+          navigation.push('VerifySignUp', { email })
+      }
     } finally {
       setIsLoading(false)
     }
@@ -29,10 +41,9 @@ export const useAuth = () => {
         },
       })
     } catch (error) {
-      let message
-
-      if (error.code === 'UsernameExistsException') {
-        message = 'Esse e-mail já está em uso'
+      switch (error.code) {
+        case 'UsernameExistsException':
+          throw new Error('Esse e-mail já está em uso')
       }
 
       console.log('signUp error: ', error)
@@ -48,8 +59,12 @@ export const useAuth = () => {
       return await AuthService.confirmSignUp(email, code)
     } catch (error) {
       console.log('confirmSignUp error: ', error)
-      if (error?.code === 'CodeMismatchException') {
-        throw new Error('Código de verificação inválido')
+
+      switch (error?.code) {
+        case 'CodeMismatchException':
+          throw new Error('Código de verificação inválido')
+        case 'LimitExceededException':
+          throw new Error('Número de tentativas excedido. Por favor, tente mais tarde!')
       }
     } finally {
       setIsLoading(false)

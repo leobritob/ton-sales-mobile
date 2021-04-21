@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify'
 
-const signIn = (email: string, password: string) => Auth.signIn({ username: email, password })
+const signIn = (email: string, password: string) => Auth.signIn(email, password)
 
 const signUp = (data: any) => Auth.signUp(data)
 

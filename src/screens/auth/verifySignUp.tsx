@@ -66,7 +66,7 @@ export const VerifySignUpScreen = ({ route, navigation }: StackScreenProps<RootS
           {errors?.code && <ErrorText>{errors.code.message}</ErrorText>}
 
           {isLoading ? (
-            <Loading />
+            <Loading color="#333" mt="20px" />
           ) : (
             <Fragment>
               <Button variant="transparent" mt="5px" mb="20px" onPress={handleResendConfirmationCode}>

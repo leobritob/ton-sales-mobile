@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Alert } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 import { useForm, Controller } from 'react-hook-form'
@@ -39,12 +40,16 @@ export const SigUpScreen = ({ navigation }: StackScreenProps<RootStackParamList,
   const { isLoading, signUp } = useAuth()
 
   const handleRegisterButton = useCallback(async (value) => {
-    const user = await signUp(value)
-    if (user) {
-      navigation.reset({
-        index: 1,
-        routes: [{ name: 'VerifySignUp', params: { email: value.email } }],
-      })
+    try {
+      const user = await signUp(value)
+      if (user) {
+        navigation.reset({
+          index: 1,
+          routes: [{ name: 'VerifySignUp', params: { email: value.email } }],
+        })
+      }
+    } catch (e) {
+      Alert.alert('Erro', e.message)
     }
   }, [])
 

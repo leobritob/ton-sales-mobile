@@ -1,10 +1,10 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "start": "EXPO_LEGACY_IMPORTS=1 expo start",
+    "android": "EXPO_LEGACY_IMPORTS=1 expo start --android",
+    "ios": "EXPO_LEGACY_IMPORTS=1 expo start --ios",
+    "web": "EXPO_LEGACY_IMPORTS=1 expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "@react-native-community/netinfo": "^6.0.0",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "amazon-cognito-identity-js": "^4.6.0",
     "aws-amplify": "^3.3.27",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
