@@ -1,18 +1,20 @@
 import styled from 'styled-components/native'
 import {
   layout,
-  space,
-  flex,
-  background,
-  typography,
   LayoutProps,
+  space,
   SpaceProps,
+  flex,
   FlexProps,
-  BackgroundProps,
+  color,
+  ColorProps,
+  typography,
   TypographyProps,
+  border,
+  BorderProps,
 } from 'styled-system'
 
-export type InputProps = LayoutProps & SpaceProps & FlexProps & BackgroundProps & TypographyProps
+export type InputProps = LayoutProps & SpaceProps & FlexProps & ColorProps & TypographyProps & BorderProps
 
 export const Input = styled.TextInput<InputProps>`
   width: 100%;
@@ -23,6 +25,7 @@ export const Input = styled.TextInput<InputProps>`
   ${layout}
   ${space}
   ${flex}
-  ${background}
+  ${color}
   ${typography}
+  ${border}
 `
