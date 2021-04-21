@@ -20,6 +20,8 @@ export const useAuth = () => {
       console.log('signIn error: ', error)
 
       switch (error.code) {
+        case 'UserNotFoundException':
+          throw new Error('E-mail e/ou senha estão incorretos')
         case 'UserNotConfirmedException':
           navigation.push('VerifySignUp', { email })
       }

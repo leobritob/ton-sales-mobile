@@ -2,7 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { SigInScreen, HomeScreen, SigUpScreen, VerifySignUpScreen } from '../screens'
+import { SigInScreen, ProductsScreen, SigUpScreen, VerifySignUpScreen } from '../screens'
 import { theme } from '../themes'
 
 const headersStyle = {
@@ -17,7 +17,7 @@ export type RootStackParamList = {
   SignIn: undefined
   SignUp: undefined
   VerifySignUp: { email: string }
-  Home: undefined
+  Products: undefined
 }
 
 export const StackNavigation = () => {
@@ -31,7 +31,7 @@ export const StackNavigation = () => {
           component={VerifySignUpScreen}
           options={{ ...headersStyle, title: 'Verifique seu cadastro' }}
         />
-        <Stack.Screen name="Home" component={HomeScreen} options={{ ...headersStyle, title: 'Início' }} />
+        <Stack.Screen name="Products" component={ProductsScreen} options={{ ...headersStyle, title: 'Produtos' }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

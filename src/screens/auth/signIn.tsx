@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Alert } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 import { useForm, Controller } from 'react-hook-form'
@@ -38,9 +39,13 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
 
   const handleLoginButton = useCallback(
     async (value) => {
-      const user = await signIn(value.email, value.password, navigation)
-      if (user) {
-        navigation.replace('Home')
+      try {
+        const user = await signIn(value.email, value.password, navigation)
+        if (user) {
+          navigation.replace('Products')
+        }
+      } catch (e) {
+        Alert.alert('Erro', e.message)
       }
     },
     [signIn]
@@ -87,6 +92,7 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
                 placeholder="Senha"
                 mb="10px"
                 onChangeText={onChange}
+                onSubmitEditing={handleSubmit(handleLoginButton)}
               />
             )}
           />
