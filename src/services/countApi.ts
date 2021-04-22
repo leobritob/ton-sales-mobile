@@ -1,7 +1,7 @@
 import { Api } from '../providers'
 
-const hit = () => Api.get('https://api.countapi.xyz/hit/tonsales/app')
+const newAppHit = () => Api.post('/api/v1/count-api/app')
 
 export const CountApiServices = {
-  hit,
+  newAppHit,
 }

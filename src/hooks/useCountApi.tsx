@@ -1,11 +1,15 @@
 import { CountApiServices } from '../services'
 
 export const useCountApi = () => {
-  const hit = async () => {
-    await CountApiServices.hit()
+  const newAppHit = async () => {
+    try {
+      await CountApiServices.newAppHit()
+    } catch (e) {
+      console.log(JSON.stringify(e))
+    }
   }
 
   return {
-    hit,
+    newAppHit,
   }
 }

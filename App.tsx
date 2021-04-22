@@ -10,11 +10,11 @@ import { useCountApi } from './src/hooks'
 Amplify.configure(amplifyConfigure)
 
 const App: React.FC = () => {
-  const { hit } = useCountApi()
+  const { newAppHit } = useCountApi()
 
   useEffect(() => {
-    hit()
-  }, [hit])
+    newAppHit()
+  }, [newAppHit])
 
   return (
     <ThemeProvider theme={theme}>
