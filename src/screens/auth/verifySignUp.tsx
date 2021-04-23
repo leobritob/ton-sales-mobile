@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback } from 'react'
-import { Alert } from 'react-native'
+import { Alert, StatusBar } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
 import { useForm, Controller } from 'react-hook-form'
@@ -41,12 +41,13 @@ export const VerifySignUpScreen = ({ route, navigation }: StackScreenProps<RootS
   )
 
   const handleResendConfirmationCode = useCallback(async () => {
-    console.log({ email })
     await resendConfirmationCode(email)
   }, [email, resendConfirmationCode])
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <StatusBar barStyle="light-content" />
+
       <Column height="100%" backgroundColor="#fff" justifyContent="flex-start">
         <Column width="100%" backgroundColor={theme.colors.primary} height="150px">
           <TonLogoSvg width={120} color="#fff" />
