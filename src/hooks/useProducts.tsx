@@ -26,17 +26,6 @@ export const useProducts = () => {
     }
   }, [])
 
-  const productsFiltered = useMemo(() => {
-    const shoppingCartIds = shoppingCart.map(({ _id }) => _id)
-
-    return products.map((product) => {
-      const productItem: ProductsItemProps = { ...product, selected: false }
-      productItem.selected = shoppingCartIds.includes(product._id)
-
-      return productItem
-    })
-  }, [products, shoppingCart])
-
   const handleShoppingCartProducts = useCallback((shoppingCart: ProductsItemProps[], product: ProductsItemProps) => {
     const shoppingCartCopy = [...shoppingCart]
     const item = shoppingCartCopy.find(({ _id }) => _id === product._id)
@@ -54,10 +43,30 @@ export const useProducts = () => {
     [shoppingCart, setShoppingCart, handleShoppingCartProducts]
   )
 
+  const productsFiltered = useMemo(() => {
+    const shoppingCartIds = shoppingCart.map(({ _id }) => _id)
+
+    return products.map((product) => {
+      const productItem: ProductsItemProps = { ...product, selected: false }
+      productItem.selected = shoppingCartIds.includes(product._id)
+
+      return productItem
+    })
+  }, [products, shoppingCart])
+
+  const shoppingCartAmount = useMemo(() => {
+    const amount = shoppingCart
+      .map(({ price }) => parseFloat(price.toString().replace(/[R$' ']/g, '')))
+      .reduce((acc, price) => (acc += price), 0)
+
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(amount)).toString()
+  }, [products, shoppingCart])
+
   return {
     isLoading,
     products,
     productsFiltered,
+    shoppingCartAmount,
     getAllProducts,
     handleShoppingCartProducts,
     handleSelectedProduct,

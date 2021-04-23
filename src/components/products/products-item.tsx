@@ -7,7 +7,7 @@ import { Text } from '../texts'
 export type ProductsItemProps = {
   _id: string
   name: string
-  price: string
+  price: number
   selected: boolean
   onSelect?: (product: ProductsItemProps) => void
 }

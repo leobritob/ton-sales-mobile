@@ -32,6 +32,10 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
         border: 'none',
         backgroundColor: 'transparent',
       },
+      white: {
+        border: '1px solid #fff',
+        backgroundColor: '#fff',
+      },
       gray: {
         border: '1px solid #ccc',
         backgroundColor: 'transparent',

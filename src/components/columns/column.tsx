@@ -10,9 +10,11 @@ import {
   ColorProps,
   flexbox,
   FlexboxProps,
+  position,
+  PositionProps,
 } from 'styled-system'
 
-export type ColumnProps = LayoutProps & FlexProps & SpaceProps & ColorProps & FlexboxProps
+export type ColumnProps = LayoutProps & FlexProps & SpaceProps & ColorProps & FlexboxProps & PositionProps
 
 export const Column = styled.View<ColumnProps>`
   flex-direction: column;
@@ -23,4 +25,5 @@ export const Column = styled.View<ColumnProps>`
   ${flex}
   ${space}
   ${flexbox}
+  ${position}
 `

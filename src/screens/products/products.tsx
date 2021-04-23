@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { View, StatusBar } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 
