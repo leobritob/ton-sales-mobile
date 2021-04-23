@@ -6,6 +6,7 @@ import { amplifyConfigure } from './src/configs'
 import { theme } from './src/themes'
 import { StackNavigation } from './src/navigations'
 import { useCountApi } from './src/hooks'
+import { AppProvider } from './src/contexts'
 
 Amplify.configure(amplifyConfigure)
 
@@ -18,7 +19,9 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StackNavigation />
+      <AppProvider>
+        <StackNavigation />
+      </AppProvider>
     </ThemeProvider>
   )
 }

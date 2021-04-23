@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { FlatList } from 'react-native'
 
-import { ProductsItem } from './products-item'
+import { ProductsItem, ProductsItemProps } from './products-item'
 
-export const Products: React.FC = () => {
+export type ProductsProps = {
+  products: ProductsItemProps[]
+  onSelect: (product: ProductsItemProps) => void
+}
+
+export const Products: React.FC<ProductsProps> = ({ products, onSelect }) => {
   return (
     <FlatList
       style={{ width: '100%' }}
-      data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+      data={products}
       horizontal={false}
       numColumns={2}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={() => <ProductsItem name="MacBook Pro" price="R$ 10.000" />}
+      keyExtractor={(_, index) => index.toString()}
+      renderItem={({ item }) => <ProductsItem {...item} onSelect={onSelect} />}
     />
   )
 }

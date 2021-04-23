@@ -1,10 +1,12 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-import { useState } from 'react'
-import { RootStackParamList } from '../navigations'
+import { useEffect, useState } from 'react'
 
+import { StorageHelper } from '../helpers/storage'
+import { RootStackParamList } from '../navigations'
 import { AuthService } from '../services'
 
 export const useAuth = () => {
+  const [isConnected, setIsConnected] = useState<Boolean | undefined>()
   const [isLoading, setIsLoading] = useState(false)
 
   const signIn = async (
@@ -15,7 +17,12 @@ export const useAuth = () => {
     try {
       setIsLoading(true)
 
-      return await AuthService.signIn(email, password)
+      const user = await AuthService.signIn(email, password)
+      if (user) {
+        await StorageHelper.setItem('auth', user)
+        setIsConnected(true)
+        return user
+      }
     } catch (error) {
       console.log('signIn error: ', error)
 
@@ -86,5 +93,14 @@ export const useAuth = () => {
     }
   }
 
-  return { isLoading, signIn, signUp, confirmSignUp, resendConfirmationCode }
+  useEffect(() => {
+    const getAuth = async () => {
+      const user = await StorageHelper.getItem('auth')
+      setIsConnected(user != null)
+    }
+
+    getAuth()
+  }, [])
+
+  return { isLoading, isConnected, signIn, signUp, confirmSignUp, resendConfirmationCode }
 }

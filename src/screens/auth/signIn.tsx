@@ -42,7 +42,7 @@ export const SigInScreen = ({ navigation }: StackScreenProps<RootStackParamList,
       try {
         const user = await signIn(value.email, value.password, navigation)
         if (user) {
-          navigation.replace('Products')
+          return navigation.replace('Products')
         }
       } catch (e) {
         Alert.alert('Erro', e.message)

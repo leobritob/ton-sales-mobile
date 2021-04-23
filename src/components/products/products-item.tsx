@@ -1,21 +1,24 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { Button } from '../buttons'
 import { Column } from '../columns'
 import { Text } from '../texts'
 
-type ProductsItemProps = {
+export type ProductsItemProps = {
+  _id: string
   name: string
   price: string
-  selected?: boolean
+  selected: boolean
+  onSelect?: (product: ProductsItemProps) => void
 }
 
-export const ProductsItem: React.FC<ProductsItemProps> = ({ name, price, selected }) => {
-  const [isSelected, setIsSelected] = useState(selected)
+export const ProductsItem: React.FC<ProductsItemProps> = ({ _id, name, price, selected = false, onSelect }) => {
+  const handleSelectButton = () => {
+    const nextStatus = !selected
 
-  const handleSelectButton = useCallback(() => {
-    setIsSelected((prev) => !prev)
-  }, [])
+    const product = { _id, name, price, selected: nextStatus }
+    if (onSelect) onSelect(product)
+  }
 
   return (
     <Column flex={1 / 2} m="20px">
@@ -28,7 +31,7 @@ export const ProductsItem: React.FC<ProductsItemProps> = ({ name, price, selecte
         {price}
       </Text>
       <Button
-        backgroundColor={isSelected ? 'danger' : 'primary'}
+        backgroundColor={selected ? 'danger' : 'primary'}
         minHeight="auto"
         width="100%"
         m="0"
@@ -37,7 +40,7 @@ export const ProductsItem: React.FC<ProductsItemProps> = ({ name, price, selecte
         onPress={handleSelectButton}
       >
         <Text fontSize="24px" fontWeight="bold" color="#fff">
-          {isSelected ? '-' : '+'}
+          {selected ? '-' : '+'}
         </Text>
       </Button>
     </Column>
