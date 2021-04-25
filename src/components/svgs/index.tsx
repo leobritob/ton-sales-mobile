@@ -1,2 +1,2 @@
 export * from './ton'
-export * from './shoppingCard'
+export * from './shoppingCart'

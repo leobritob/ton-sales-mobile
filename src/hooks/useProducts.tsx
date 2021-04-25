@@ -56,7 +56,14 @@ export const useProducts = () => {
 
   const shoppingCartAmount = useMemo(() => {
     const amount = shoppingCart
-      .map(({ price }) => parseFloat(price.toString().replace(/[R$' ']/g, '')))
+      .map(({ price }) =>
+        parseFloat(
+          price
+            .toString()
+            .replace(/[R$' ']/g, '')
+            .replace(/,/, '.')
+        )
+      )
       .reduce((acc, price) => (acc += price), 0)
 
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(amount)).toString()
